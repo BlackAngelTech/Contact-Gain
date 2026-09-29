@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contact Gain</title>
+<style>
+:root{--bg:#050b16;--panel:#0b1526cc;--panel2:#0e1c31;--line:#1d3150;--text:#f7faff;--muted:#9aabc2;--green:#20e27d;--green2:#0fb861;--cyan:#39d9ff;--red:#ff6375;--yellow:#ffd166;--shadow:0 25px 80px #0008}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial;background:radial-gradient(circle at 10% 0%,#17355b 0,transparent 35%),radial-gradient(circle at 90% 10%,#0a4b4b 0,transparent 30%),linear-gradient(145deg,#050b16,#071323 55%,#050914);min-height:100vh}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(#ffffff04 1px,transparent 1px),linear-gradient(90deg,#ffffff04 1px,transparent 1px);background-size:32px 32px;mask-image:linear-gradient(to bottom,black,transparent 75%)}
+.wrap{width:min(1160px,100%);margin:auto;padding:20px}.nav{display:flex;justify-content:space-between;align-items:center;gap:15px;padding:10px 0 24px}.brand{font-weight:900;font-size:25px;letter-spacing:-.6px}.brand b{color:var(--green)}.pill{border:1px solid #ffffff18;background:#ffffff08;border-radius:999px;padding:8px 12px;color:#c8d5e6;font-size:12px}
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.glass,.admin{background:linear-gradient(145deg,#0c1a2eee,#071222e8);border:1px solid #ffffff12;border-radius:28px;box-shadow:var(--shadow);backdrop-filter:blur(14px)}.heroCopy{padding:38px;position:relative;overflow:hidden}.heroCopy:after{content:"";position:absolute;width:230px;height:230px;border-radius:50%;right:-80px;top:-80px;background:#20e27d18;filter:blur(5px)}
+.kicker{color:#7de9ae;font-weight:800;font-size:12px;text-transform:uppercase;letter-spacing:1.5px}.hero h1{font-size:clamp(42px,7vw,76px);line-height:.92;letter-spacing:-3px;margin:15px 0 20px}.hero h1 span{color:var(--green)}.hero p{color:var(--muted);line-height:1.7;max-width:650px}.featureGrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:24px}.feature{padding:14px;border-radius:17px;background:#ffffff05;border:1px solid #ffffff0b}.feature strong{display:block;margin-bottom:4px}.feature small{color:var(--muted)}
+.formCard{padding:28px}.formCard h2{margin-top:0}form{display:grid;gap:13px}label{font-size:12px;color:#c9d7e8}input,textarea,select{width:100%;padding:14px 15px;border:1px solid #263d5b;background:#06101e;color:#fff;border-radius:14px;outline:0}input:focus,textarea:focus{border-color:#35d989;box-shadow:0 0 0 3px #20e27d13}textarea{min-height:100px;resize:vertical}button{border:0;border-radius:13px;padding:13px 15px;font-weight:850;cursor:pointer;background:var(--green);color:#03120a;transition:.2s}button:hover{transform:translateY(-1px);filter:brightness(1.08)}button.secondary{background:#1b2d47;color:#eaf2ff}button.danger{background:#ff5b70;color:#21050a}button.warn{background:var(--yellow);color:#241800}.consent{display:flex;gap:9px;color:var(--muted);line-height:1.4}.consent input{width:auto;margin-top:3px}.msg{display:none;border-radius:12px;padding:11px 13px;font-size:13px}.ok{display:block;background:#0c3020;color:#a9f5c9}.err{display:block;background:#35131b;color:#ffb9c2}
+.admin{margin-top:20px;padding:26px}.adminHead{display:flex;justify-content:space-between;gap:15px;align-items:center;flex-wrap:wrap}.adminHead h2{margin:0}.hidden{display:none!important}.loginRow{display:flex;gap:10px;max-width:550px;margin-top:18px}.loginRow input{flex:1}.dashboard{margin-top:20px}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{padding:17px;border:1px solid #ffffff10;background:#ffffff05;border-radius:18px}.stat b{font-size:26px;display:block}.stat span{font-size:12px;color:var(--muted)}
+.tools{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.tool{padding:17px;border-radius:19px;border:1px solid #ffffff10;background:#071322}.tool h3{margin:0 0 7px;font-size:15px}.tool p{margin:0 0 13px;color:var(--muted);font-size:12px;line-height:1.5}.tool button{width:100%}.toggle{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:11px;border:1px solid #ffffff0d;background:#ffffff04;border-radius:12px;margin-bottom:8px}.toggle input{width:auto}
+.search{display:flex;gap:10px;margin-top:16px}.search input{flex:1}.list{margin-top:12px;max-height:430px;overflow:auto;border:1px solid #ffffff0d;border-radius:17px}.contact{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:13px 15px;border-bottom:1px solid #ffffff09}.contact:last-child{border-bottom:0}.contact .name{font-weight:800}.contact .phone,.contact .date{font-size:12px;color:var(--muted)}.mini{padding:8px 10px;border-radius:9px;font-size:12px}
+.activity{max-height:250px;overflow:auto;margin-top:10px}.event{padding:9px 0;border-bottom:1px solid #ffffff0a;font-size:12px}.event span{color:var(--muted)}
+footer{color:#687b94;font-size:11px;padding:25px 2px 8px;line-height:1.6}
+@media(max-width:900px){.hero{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.tools{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.wrap{padding:12px}.heroCopy,.formCard,.admin{padding:20px}.featureGrid,.tools{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}.loginRow,.search{flex-direction:column}.contact{grid-template-columns:1fr}.hero h1{letter-spacing:-2px}}
+
+.navlink{color:#cbd9e9;text-decoration:none;font-size:12px;padding:9px 11px;border-radius:10px;border:1px solid #ffffff0b;background:#ffffff04}.navlink:hover{background:#ffffff0b;color:#fff}.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 14px var(--green);margin-right:5px}.section{margin-top:20px;padding:28px}.section h2{margin:0 0 8px;font-size:26px}.section>p{color:var(--muted);line-height:1.6}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}.step{padding:20px;border-radius:20px;background:#ffffff04;border:1px solid #ffffff0b}.step .num{width:34px;height:34px;display:grid;place-items:center;border-radius:10px;background:#20e27d16;color:#78efa9;font-weight:900;margin-bottom:12px}.step h3{margin:0 0 6px}.step p{color:var(--muted);font-size:13px;line-height:1.55;margin:0}.trust{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:14px}.trustbox{padding:16px;border-radius:17px;background:#06101e;border:1px solid #ffffff0b}.trustbox b{font-size:14px}.trustbox span{display:block;color:var(--muted);font-size:11px;margin-top:4px}.faq{display:grid;gap:9px;margin-top:15px}.faq details{border:1px solid #ffffff0c;background:#ffffff04;border-radius:15px;padding:14px 16px}.faq summary{cursor:pointer;font-weight:800}.faq p{color:var(--muted);line-height:1.6;font-size:13px;margin-bottom:2px}.notice{padding:12px 14px;border-radius:14px;background:#082238;border:1px solid #16466b;color:#b9def3;font-size:12px;line-height:1.5;margin-top:12px}.linkbtn{display:inline-flex;text-decoration:none;align-items:center;justify-content:center;margin-top:14px;padding:12px 15px;border-radius:12px;background:#1b2d47;color:#fff;font-weight:800;font-size:13px}.counter{font-size:13px;color:#9feec0;margin-top:10px}.progress{height:8px;background:#0a1524;border-radius:999px;overflow:hidden;margin-top:9px}.progress i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--green),var(--cyan));border-radius:999px}
+@media(max-width:700px){.steps{grid-template-columns:1fr}.trust{grid-template-columns:repeat(2,1fr)}.navlink{display:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="nav"><div class="brand">Contact<b>Gain</b></div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><a class="navlink" href="#how">How it works</a><a class="navlink" href="#faq">FAQ</a><a class="navlink" href="/admin.html">⚙️ Admin</a><div class="pill"><i class="dot"></i> System online</div></div></nav>
+
+<section id="join" class="hero">
+ <div class="glass heroCopy">
+  <div class="kicker">Build your network</div>
+  <h1>Gain contacts.<br><span>Grow faster.</span></h1>
+  <p id="welcome">Join the Contact Gain network. Add your name and phone number to connect with other members and build a stronger contact list.</p>
+  <div class="featureGrid">
+   <div class="feature"><strong>🛡️ Duplicate protection</strong><small>One phone number can only be registered once.</small></div>
+   <div class="feature"><strong>📱 Mobile first</strong><small>Fast, clean and responsive on phones.</small></div>
+   <div class="feature"><strong>⚡ Instant saving</strong><small>Registration appears in the admin dashboard immediately.</small></div>
+   <div class="feature"><strong>📦 VCF ready</strong><small>Admin can export contacts when downloads are enabled.</small></div>
+  </div>
+ </div>
+ <div class="glass formCard">
+  <h2>Join Contact Gain</h2>
+  <p style="color:var(--muted);font-size:13px">Enter your details. Your number is normalized before the duplicate check.</p>
+  <form id="form">
+   <div><label>NAME</label><input id="name" maxlength="80" placeholder="e.g. Tanaka M." required></div>
+   <div><label>PHONE NUMBER</label><input id="phone" maxlength="25" inputmode="tel" placeholder="+263 77 123 4567" required></div>
+   <label class="consent"><input id="consent" type="checkbox" required><span>I agree that Contact Gain may store my name and phone number for the stated contact-sharing purpose.</span></label>
+   <button>Save my contact →</button><div id="msg" class="msg"></div>
+  </form>
+ </div>
+</section>
+
+<section id="how" class="glass section">
+ <div class="kicker">Simple process</div><h2>How Contact Gain works</h2><p>Everything is designed to keep registration quick while preventing accidental duplicate phone numbers.</p>
+ <div class="steps">
+  <div class="step"><div class="num">01</div><h3>Enter your details</h3><p>Provide a display name and phone number, then confirm the consent notice.</p></div>
+  <div class="step"><div class="num">02</div><h3>Automatic validation</h3><p>The server validates the number, normalizes common formats and checks for an existing number before saving.</p></div>
+  <div class="step"><div class="num">03</div><h3>Admin manages the list</h3><p>Authorized admins can search, edit, remove, back up and export contacts from the separate control center.</p></div>
+ </div>
+ <div class="trust">
+  <div class="trustbox"><b>🛡️ Duplicate-safe</b><span>Server-side duplicate checks</span></div>
+  <div class="trustbox"><b>🔒 Admin controls</b><span>Protected management area</span></div>
+  <div class="trustbox"><b>📦 Backup ready</b><span>JSON, CSV and VCF tools</span></div>
+  <div class="trustbox"><b>📱 Mobile friendly</b><span>Built for phone screens</span></div>
+ </div>
+ <div class="notice">Only submit a phone number if you are comfortable with it being stored for the stated purpose. For a public deployment, publish a privacy/retention policy and use HTTPS.</div>
+ <a class="linkbtn" href="#join">Join now ↓</a>
+</section>
+
+<section id="faq" class="glass section">
+ <div class="kicker">Need to know</div><h2>Frequently asked questions</h2>
+ <div class="faq">
+  <details open><summary>Can the same number be registered twice?</summary><p>No. The server normalizes common phone-number formats and rejects a number if that normalized number is already stored.</p></details>
+  <details><summary>Can an admin turn registration off?</summary><p>Yes. The admin control center has a registration switch and a separate maintenance mode.</p></details>
+  <details><summary>Can contacts be exported?</summary><p>Yes. Authorized admins can export VCF or CSV, or create a JSON backup. Export access can be disabled from the admin panel.</p></details>
+  <details><summary>Can I change the public text?</summary><p>Yes. The admin panel includes site-title and welcome-message controls.</p></details>
+ </div>
+</section>
+
+<section class="admin">
+ <div class="adminHead"><div><h2>⚙️ Control Center</h2><p style="color:var(--muted);font-size:12px;margin:6px 0">18 admin tools for managing the contact system.</p></div><button id="logout" class="secondary hidden" onclick="logout()">Log out</button></div>
+
+ <div id="login">
+  <div class="loginRow"><input id="password" type="password" placeholder="Admin password"><button onclick="login()">Unlock panel</button></div>
+  <div id="adminMsg" class="msg" style="margin-top:10px"></div>
+ </div>
+
+ <div id="adminbox" class="hidden dashboard">
+  <div class="stats">
+   <div class="stat"><b id="total">0</b><span>Total contacts</span></div>
+   <div class="stat"><b id="today">0</b><span>Added today</span></div>
+   <div class="stat"><b id="dupes">0</b><span>Duplicate groups</span></div>
+   <div class="stat"><b id="mode">ON</b><span>Registration status</span></div>
+  </div>
+
+  <div class="tools">
+   <div class="tool"><h3>1. Registration switch</h3><p>Turn public registration on or off.</p><button id="regBtn" onclick="toggle('registrationEnabled')">Toggle</button></div>
+   <div class="tool"><h3>2. VCF download switch</h3><p>Control whether admins can export VCF.</p><button id="dlBtn" onclick="toggle('downloadsEnabled')">Toggle</button></div>
+   <div class="tool"><h3>3. Maintenance mode</h3><p>Temporarily block new registrations.</p><button id="maintBtn" onclick="toggle('maintenanceMode')">Toggle</button></div>
+   <div class="tool"><h3>4. VCF export</h3><p>Download all saved contacts as phone-ready VCF.</p><button onclick="downloadFile('/api/admin/download-vcf')">Download VCF</button></div>
+   <div class="tool"><h3>5. CSV export</h3><p>Download a spreadsheet-friendly contact list.</p><button onclick="downloadFile('/api/admin/download-csv')">Download CSV</button></div>
+   <div class="tool"><h3>6. JSON backup</h3><p>Backup contacts and settings into one JSON file.</p><button onclick="downloadFile('/api/admin/backup')">Download backup</button></div>
+   <div class="tool"><h3>7. Duplicate scanner</h3><p>Scan the existing database for repeated normalized numbers.</p><button class="secondary" onclick="scanDuplicates()">Scan now</button></div>
+   <div class="tool"><h3>8. Purge duplicates</h3><p>Keep the oldest record and remove later duplicates.</p><button class="danger" onclick="purgeDuplicates()">Purge duplicates</button></div>
+   <div class="tool"><h3>9. Search contacts</h3><p>Find contacts by name or phone number.</p><button class="secondary" onclick="focusSearch()">Search below</button></div>
+   <div class="tool"><h3>10. Edit contact</h3><p>Edit a saved name or phone while preserving duplicate checks.</p><button class="secondary" onclick="focusSearch()">Use contact list</button></div>
+   <div class="tool"><h3>11. Delete contact</h3><p>Remove one selected contact from the database.</p><button class="danger" onclick="alert('Use the Delete button beside a contact below.')">Select contact</button></div>
+   <div class="tool"><h3>12. Delete everything</h3><p>Danger zone: erase the complete contact database.</p><button class="danger" onclick="clearAll()">Delete all</button></div>
+   <div class="tool"><h3>13. Site title</h3><p>Change the public page title shown to visitors.</p><input id="siteTitle" placeholder="Site title"><button style="margin-top:8px" onclick="saveTextSettings()">Save title</button></div>
+   <div class="tool"><h3>14. Welcome message</h3><p>Change the public introduction text.</p><textarea id="welcomeText" placeholder="Welcome text"></textarea><button style="margin-top:8px" onclick="saveTextSettings()">Save message</button></div>
+   <div class="tool"><h3>15. Registration rate limit</h3><p>Maximum registrations from one IP per hour.</p><input id="rateLimit" type="number" min="1" max="1000" value="30"><button style="margin-top:8px" onclick="saveRate()">Save limit</button></div>
+   <div class="tool"><h3>16. Default country code</h3><p>Used to normalize local numbers beginning with 0.</p><input id="countryCode" placeholder="263"><button style="margin-top:8px" onclick="saveCountry()">Save code</button></div>
+   <div class="tool"><h3>17. Activity log</h3><p>View recent registrations, exports, deletes and admin actions.</p><button class="secondary" onclick="loadActivity()">Refresh activity</button><div id="activity" class="activity"></div></div>
+   <div class="tool"><h3>18. Restore backup</h3><p>Restore contacts from a JSON backup created by this panel.</p><input id="restoreFile" type="file" accept=".json" style="margin-bottom:8px"><button class="warn" onclick="restoreBackup()">Restore JSON</button></div>
+  </div>
+
+  <div class="search">
+   <input id="search" placeholder="Search by name or phone..." oninput="loadContacts()">
+   <button class="secondary" onclick="$('search').value='';loadContacts()">Clear</button>
+  </div>
+  <div id="list" class="list"></div>
+ </div>
+</section>
+
+<footer>Privacy note: collect phone numbers only with clear notice and consent, protect the admin credentials, use HTTPS in production, and follow the privacy/data-protection rules that apply to your service.</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let token=sessionStorage.getItem("adminToken")||"";
+async function api(url,opt={}){opt.headers={...(opt.headers||{}),"x-admin-token":token};return fetch(url,opt)}
+function msg(el,text,type){el.className="msg "+type;el.textContent=text}
+$("form").addEventListener("submit",async e=>{
+ e.preventDefault();
+ try{
+  const r=await fetch("/api/contacts",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:$("name").value,phone:$("phone").value,consent:$("consent").checked})});
+  const d=await r.json();if(!r.ok)throw Error(d.error||"Could not save.");
+  msg($("msg"),"✓ Contact saved successfully.","ok");e.target.reset();
+ }catch(x){msg($("msg"),x.message,"err")}
+});
+async function login(){
+ const r=await fetch("/api/admin/login",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({password:$("password").value})});
+ const d=await r.json();if(!r.ok){msg($("adminMsg"),d.error,"err");return}
+ token=d.token;sessionStorage.setItem("adminToken",token);showAdmin();refresh();
+}
+function showAdmin(){$("login").classList.add("hidden");$("adminbox").classList.remove("hidden");$("logout").classList.remove("hidden")}
+async function refresh(){await loadSettings();await loadDashboard();await loadContacts();await loadActivity()}
+async function loadDashboard(){
+ const r=await api("/api/admin/dashboard");if(!r.ok)return;const d=await r.json();
+ $("total").textContent=d.total;$("today").textContent=d.today;$("dupes").textContent=d.duplicateCount;$("mode").textContent=d.registrationEnabled?"ON":"OFF";
+}
+async function loadSettings(){
+ const r=await api("/api/admin/settings");if(!r.ok)return;const s=await r.json();
+ $("siteTitle").value=s.siteTitle;$("welcomeText").value=s.welcomeText;$("rateLimit").value=s.maxRegistrationsPerIpPerHour;$("countryCode").value=s.countryCode;
+ $("regBtn").textContent=s.registrationEnabled?"ON":"OFF";$("dlBtn").textContent=s.downloadsEnabled?"ON":"OFF";$("maintBtn").textContent=s.maintenanceMode?"ON":"OFF";
+}
+async function toggle(key){
+ const r=await api("/api/admin/settings",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({[key]:!(await (await api("/api/admin/settings")).json())[key]})});
+ if(r.ok)refresh();
+}
+async function saveTextSettings(){
+ const r=await api("/api/admin/settings",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({siteTitle:$("siteTitle").value.trim()||"Contact Gain",welcomeText:$("welcomeText").value.trim()||"Grow your network and gain contacts."})});
+ if(r.ok){const d=await r.json();$("welcome").textContent=d.welcomeText;document.title=d.siteTitle;msg($("adminMsg"),"Settings saved.","ok")}
+}
+async function saveRate(){await saveSetting({maxRegistrationsPerIpPerHour:Number($("rateLimit").value)});}
+async function saveCountry(){await saveSetting({countryCode:$("countryCode").value.replace(/\D/g,"").slice(0,4)||"263"});}
+async function saveSetting(obj){const r=await api("/api/admin/settings",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(obj)});if(r.ok)loadSettings()}
+async function loadContacts(){
+ const q=encodeURIComponent($("search").value.trim());const r=await api("/api/admin/contacts?q="+q);if(!r.ok)return;const list=await r.json();
+ $("list").innerHTML=list.map(c=>`<div class="contact"><div><div class="name">${esc(c.name)}</div><div class="phone">${esc(c.phone)} · <span class="date">${new Date(c.createdAt).toLocaleString()}</span></div></div><button class="mini secondary" onclick='editContact(${JSON.stringify(c.id)},${JSON.stringify(c.name)},${JSON.stringify(c.phone)})'>Edit</button><button class="mini danger" onclick='deleteContact(${JSON.stringify(c.id)})'>Delete</button></div>`).join("")||'<div style="padding:18px;color:#9aabc2">No contacts found.</div>';
+}
+async function editContact(id,name,phone){
+ const n=prompt("Name:",name);if(n===null)return;const p=prompt("Phone:",phone);if(p===null)return;
+ const r=await api("/api/admin/contacts/"+id,{method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:n,phone:p})});const d=await r.json();if(!r.ok)return alert(d.error);refresh();
+}
+async function deleteContact(id){if(!confirm("Delete this contact?"))return;const r=await api("/api/admin/contacts/"+id,{method:"DELETE"});if(r.ok)refresh()}
+async function clearAll(){if(prompt("Type DELETE ALL to erase every contact:")!=="DELETE ALL")return;const r=await api("/api/admin/contacts",{method:"DELETE",headers:{"Content-Type":"application/json"},body:JSON.stringify({confirm:"DELETE ALL"})});if(r.ok)refresh()}
+async function scanDuplicates(){const r=await api("/api/admin/duplicates");if(!r.ok)return;const d=await r.json();alert(d.length?d.map(x=>x.phone+" ("+x.items.length+" records)").join("\\n"):"No duplicate phone numbers found.")}
+async function purgeDuplicates(){if(!confirm("Purge duplicate numbers and keep the oldest record?"))return;const r=await api("/api/admin/purge-duplicates",{method:"POST"});const d=await r.json();alert("Removed "+(d.removed||0)+" duplicates.");refresh()}
+async function downloadFile(url){const r=await api(url);if(!r.ok){alert(await r.text());return}const blob=await r.blob();const a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download=url.includes("vcf")?"contact-gain.vcf":url.includes("csv")?"contact-gain.csv":"contact-gain-backup.json";a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}
+async function loadActivity(){const r=await api("/api/admin/activity");if(!r.ok)return;const a=await r.json();$("activity").innerHTML=a.slice(0,30).map(x=>`<div class="event"><b>${esc(x.action)}</b><br><span>${new Date(x.at).toLocaleString()}</span></div>`).join("")||'<span style="color:#9aabc2">No activity yet.</span>'}
+async function restoreBackup(){const f=$("restoreFile").files[0];if(!f)return alert("Choose a JSON backup first.");if(!confirm("Restore this backup? Current contacts will be replaced."))return;try{const data=JSON.parse(await f.text());const r=await api("/api/admin/restore",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});const d=await r.json();if(!r.ok)throw Error(d.error);alert("Restored "+d.count+" unique contacts.");refresh()}catch(e){alert(e.message)}}
+function focusSearch(){$("search").focus();$("search").scrollIntoView({behavior:"smooth"})}
+async function logout(){try{await api("/api/admin/logout",{method:"POST"})}catch{}sessionStorage.removeItem("adminToken");token="";location.reload()}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+(async()=>{
+ try{const s=await (await fetch("/api/status")).json();$("welcome").textContent=s.welcomeText;document.title=s.siteTitle;if(!s.registrationEnabled||s.maintenanceMode){$("form").querySelector("button").disabled=true;$("form").querySelector("button").textContent="Registration unavailable"}}
+ catch{}
+ if(token){showAdmin();refresh()}
+})();
+</script>
+</body>
+</html>
