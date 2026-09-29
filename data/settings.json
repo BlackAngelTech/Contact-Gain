@@ -1,0 +1,9 @@
+{
+  "downloadsEnabled": true,
+  "registrationEnabled": true,
+  "maintenanceMode": false,
+  "siteTitle": "Contact Gain",
+  "welcomeText": "Grow your network and gain contacts.",
+  "countryCode": "263",
+  "maxRegistrationsPerIpPerHour": 30
+}
